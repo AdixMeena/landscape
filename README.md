@@ -13,41 +13,101 @@
 | 🗺️ Roadmap Tracker | AI generates personalized learning paths per subject |
 | ✅ To-Do & Journal | Daily planner + personal study journal |
 | 👤 Profile | XP, achievements, quiz history, level tracking |
+| 🎯 Interview System | 8-question assessment for personalized learning profiles |
+| 📊 Data Analysis | AI analyzes your learning data to create custom profiles |
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: React + Vite + Tailwind CSS
-- **AI**: GitHub Models (GPT-4o) — free via GitHub Student Pack
+- **Backend**: FastAPI + Python
+- **AI**: Groq API (Llama models) + GitHub Models
 - **Database + Auth**: Supabase
-- **Deploy**: Vercel (frontend) + Railway (if backend needed)
+- **Deploy**: Railway (full-stack deployment)
 
 ---
 
-## ⚙️ Setup Guide
+## 🚀 Railway Deployment Guide
+
+### Step 1: GitHub Repository ✅
+Your code is already pushed to: `https://github.com/AdixMeena/roronoazoro.git`
+
+### Step 2: Railway Setup
+1. Go to [railway.app](https://railway.app) and sign up/login
+2. Click **"New Project"** → **"Deploy from GitHub repo"**
+3. Connect your GitHub account and select `roronoazoro` repository
+4. Railway will auto-detect your project structure
+
+### Step 3: Environment Variables
+In Railway dashboard, go to your project → **Variables** tab and add:
+
+#### Frontend Service Variables:
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+VITE_BACKEND_URL=https://your-backend-service.up.railway.app
+```
+
+#### Backend Service Variables:
+```
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+GROQ_API_KEY=your-groq-api-key
+FRONTEND_URL=https://your-frontend-service.up.railway.app
+```
+
+### Step 4: Database Setup
+1. Create a Supabase project at [supabase.com](https://supabase.com)
+2. Go to **SQL Editor** → paste contents of `supabase-schema.sql` → Run
+3. Copy the URL and keys from **Project Settings → API**
+
+### Step 5: Deploy
+Railway will automatically deploy both frontend and backend. Your app will be live at:
+- Frontend: `https://your-project-name.up.railway.app`
+- Backend API: `https://your-project-name-backend.up.railway.app`
+
+---
+
+## ⚙️ Local Development Setup
 
 ### 1. Clone and install
 ```bash
-git clone <your-repo>
-cd pluton
-npm install
+git clone https://github.com/AdixMeena/roronoazoro.git
+cd roronoazoro
 ```
 
-### 2. Set up Supabase
-1. Go to [supabase.com](https://supabase.com) → Create new project
-2. Go to **SQL Editor** → paste contents of `supabase-schema.sql` → Run
-3. Go to **Project Settings → API** → copy `URL` and `anon public` key
+### 2. Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-### 3. Get GitHub Models API key (FREE via Student Pack)
-1. Go to [github.com/marketplace/models](https://github.com/marketplace/models)
-2. Click any model → **"Get API Key"** → Generate token
-3. This gives you access to GPT-4o, Claude, Llama — for free!
+### 3. Backend Setup
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-### 4. Create `.env` file
+### 4. Environment Variables
+Create `.env` files in both `frontend/` and `backend/` directories:
+
+**frontend/.env:**
 ```env
 VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
+VITE_BACKEND_URL=http://localhost:8000
+```
+
+**backend/.env:**
+```env
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+GROQ_API_KEY=your-groq-api-key
+FRONTEND_URL=http://localhost:5173
+```
 VITE_GITHUB_TOKEN=your-github-models-token
 VITE_AI_MODEL=openai/gpt-4o
 ```

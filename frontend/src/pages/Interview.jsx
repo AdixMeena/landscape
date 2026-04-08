@@ -124,7 +124,7 @@ export default function Interview() {
     setGenerating(true)
     try {
       // Send to backend for analysis
-      const response = await fetch('http://localhost:8000/generate-profile-from-interview', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/generate-profile-from-interview`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

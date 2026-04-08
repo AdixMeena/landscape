@@ -80,7 +80,7 @@ export default function Profile() {
       }
 
       // Send to backend for analysis
-      const response = await fetch('http://localhost:8000/generate-profile', {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/generate-profile`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
