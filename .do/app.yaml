@@ -1,0 +1,38 @@
+name: pluton-learning-platform
+services:
+- name: backend
+  source_dir: backend
+  github:
+    repo: AdixMeena/Pluton-Full
+    branch: main
+  run_command: uvicorn main:app --host 0.0.0.0 --port $PORT
+  environment_slug: python
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  envs:
+  - key: SUPABASE_URL
+    value: "${SUPABASE_URL}"
+  - key: SUPABASE_SERVICE_ROLE_KEY
+    value: "${SUPABASE_SERVICE_ROLE_KEY}"
+  - key: GROQ_API_KEY
+    value: "${GROQ_API_KEY}"
+  - key: FRONTEND_URL
+    value: "${FRONTEND_URL}"
+
+- name: frontend
+  source_dir: frontend
+  github:
+    repo: AdixMeena/Pluton-Full
+    branch: main
+  build_command: npm run build
+  run_command: npm run preview -- --host 0.0.0.0 --port $PORT
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  envs:
+  - key: VITE_SUPABASE_URL
+    value: "${SUPABASE_URL}"
+  - key: VITE_SUPABASE_ANON_KEY
+    value: "${VITE_SUPABASE_ANON_KEY}"
+  - key: VITE_BACKEND_URL
+    value: "${BACKEND_URL}"

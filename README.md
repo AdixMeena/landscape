@@ -28,7 +28,66 @@
 
 ---
 
-## 🚀 Railway Deployment Guide
+## 🚀 DigitalOcean App Platform Deployment
+
+### Step 1: DigitalOcean Setup
+1. Go to [digitalocean.com](https://digitalocean.com) and create an account
+2. Go to **App Platform** → **Create App**
+3. Choose **GitHub** as source
+4. Connect your GitHub account and select `AdixMeena/Pluton-Full` repository
+5. Choose the **main** branch
+
+### Step 2: App Configuration
+DigitalOcean will automatically detect the app spec from `.do/app.yaml`:
+- **Backend Service**: Python FastAPI
+- **Frontend Service**: Node.js React app
+
+### Step 3: Environment Variables
+Add these environment variables in DigitalOcean App Platform:
+
+#### Global Environment Variables:
+```
+SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+BACKEND_URL=https://your-backend-app-name.ondigitalocean.app
+FRONTEND_URL=https://your-frontend-app-name.ondigitalocean.app
+```
+
+#### Backend Service Variables:
+```
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+GROQ_API_KEY=your-groq-api-key
+```
+
+### Step 4: Deploy
+1. Click **Create App**
+2. DigitalOcean will build and deploy both services
+3. Your app will be live at:
+   - **Frontend**: `https://your-app-name.ondigitalocean.app`
+   - **Backend API**: `https://your-app-name-backend.ondigitalocean.app`
+
+---
+
+## 🐳 Docker Deployment (Alternative)
+
+### Local Development:
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Start all services
+docker-compose up --build
+```
+
+### Production Docker Deployment:
+```bash
+# Build and run
+docker-compose -f docker-compose.yml up --build -d
+```
+
+---
+
+## ⚙️ Local Development Setup
 
 ### Step 1: GitHub Repository ✅
 Your code is already pushed to: `https://github.com/AdixMeena/roronoazoro.git`
