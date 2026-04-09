@@ -312,6 +312,9 @@ async def generate_profile_from_interview(request: dict):
         user_id = request.get("user_id")
         interview_responses = request.get("interview_responses", {})
         
+        print(f"User ID: {user_id}")
+        print(f"Interview responses: {interview_responses}")
+        
         if not user_id:
             raise HTTPException(status_code=400, detail="User ID is required")
         
@@ -322,6 +325,7 @@ async def generate_profile_from_interview(request: dict):
             existing_profile = ""
             if existing_profile_response.data and len(existing_profile_response.data) > 0 and existing_profile_response.data[0].get('learning_profile'):
                 existing_profile = existing_profile_response.data[0]['learning_profile']
+            print(f"Existing profile length: {len(existing_profile)}")
         except Exception as e:
             print(f"Error fetching existing profile: {e}")
             existing_profile = ""
@@ -406,6 +410,7 @@ INTERVIEW RESPONSES START BELOW:
 {formatted_data}"""
         
         # Generate the profile using Groq
+        print("Calling Groq API...")
         client = get_groq_client()
         response = client.chat.completions.create(
             model="openai/gpt-oss-120b",
@@ -418,6 +423,7 @@ INTERVIEW RESPONSES START BELOW:
         )
         
         learning_profile = response.choices[0].message.content.strip()
+        print(f"Generated profile length: {len(learning_profile)}")
         
         return {"learning_profile": learning_profile}
     
