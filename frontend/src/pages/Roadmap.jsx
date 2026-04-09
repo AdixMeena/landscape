@@ -109,7 +109,7 @@ Make 3-4 phases with 4-6 topics each. Use English. Return ONLY the JSON.`
   }
 
   function quizFromTopic(topic) {
-    const topicText = `${topic.title}\n${topic.description || ''}`
+    const topicText = `Create a quiz for this topic in ${selectedSubject.name}: ${topic.title}\n${topic.description || ''}`
     localStorage.setItem('pluton_quiz_context', topicText)
     window.location.href = '/quiz'
   }
