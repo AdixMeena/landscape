@@ -143,10 +143,11 @@ export default function Interview() {
       const profileText = result.learning_profile
 
       // Store in database
-      await supabase.from('profiles').update({
+      await supabase.from('profiles').upsert({
+        id: user.id,
         learning_profile: profileText,
         updated_at: new Date().toISOString()
-      }).eq('id', user.id)
+      })
 
       setCompleted(true)
       toast.success('Learning profile created! 🎉')
@@ -325,5 +326,5 @@ export default function Interview() {
       </div>
     </div>
   )
-  
+
 }
