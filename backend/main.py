@@ -9,6 +9,13 @@ import json
 
 load_dotenv()
 
+# Debug environment variables
+print("Environment variables loaded:")
+print(f"SUPABASE_URL: {'SET' if os.getenv('SUPABASE_URL') else 'NOT SET'}")
+print(f"SUPABASE_ANON_KEY: {'SET' if os.getenv('SUPABASE_ANON_KEY') else 'NOT SET'}")
+print(f"GROQ_API_KEY: {'SET' if os.getenv('GROQ_API_KEY') else 'NOT SET'}")
+print(f"FRONTEND_URL: {os.getenv('FRONTEND_URL', 'NOT SET')}")
+
 app = FastAPI(title="Personalized Learning Backend", version="1.0.0")
 
 # CORS middleware to allow frontend
