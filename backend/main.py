@@ -152,7 +152,8 @@ async def personalize_response(request: PersonalizedPromptRequest):
         response = client.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=[
-                {"role": "system", "content": """You are an intelligent educational assistant designed to help users learn effectively. 
+                {"role": "system", "content": 
+                """You are an intelligent educational assistant designed to help users learn effectively. 
 Your goal is to provide clear, accurate, and well-structured explanations tailored to the users learning level and patterns.
 
 Guidelines:
@@ -168,7 +169,8 @@ Output Format:
 - Start with a short explanation of the concept.
 - Provide a structured breakdown (steps, bullets, or sections).
 - Include examples or practical applications when useful.
-- End with a short summary or key takeaway.."""},
+- End with a short summary or key takeaway..
+"""},
                 {"role": "user", "content": base_prompt}
             ],
             max_tokens=500
