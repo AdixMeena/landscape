@@ -319,7 +319,6 @@ src/
 │   ├── Landing.jsx        # Public landing page
 │   ├── Auth.jsx           # Login / Signup
 │   ├── Dashboard.jsx      # Home with subjects & stats
-│   ├── YTSummarizer.jsx   # YouTube → AI notes
 │   ├── PDFExtractor.jsx   # PDF → notes + Q&A
 │   ├── QuizLab.jsx        # Quiz generator + taker
 │   ├── DoubtFinisher.jsx  # AI chat
@@ -341,14 +340,3 @@ src/
 - **Responsive**: Full mobile support with bottom nav
 
 ---
-
-## 🤝 GitHub Student Pack Benefits Used
-
-- ✅ **GitHub Models** — Free GPT-4o AI via Azure endpoint
-- ✅ **Vercel** — Free frontend hosting
-- ✅ **Namecheap** — Free .me domain (apply separately)
-- ✅ **Supabase** — Free tier database (25k MAU)
-
----
-
-Built with 💜 for students who want to learn smarter, not harder.
