@@ -1,202 +1,296 @@
-# ⚡ Pluton — AI-Powered EdTech Platform
+# Pluton
 
-> Learn Beyond Limits. Personalized AI learning for every student.
+[![License: Unlicensed](https://img.shields.io/badge/License-Unlicensed-lightgrey.svg)](#license)
 
-## 🚀 Features
+Personal AI tutor that teaches you in the way you understand.
 
-| Feature | Description |
-|--------|-------------|
-| 🎥 YT Summarizer | Paste any YouTube link → AI generates smart notes by your level |
-| 📄 PDF Extractor | Upload PDFs → extract key Q&A and notes |
-| 🧠 Quiz Lab | Generate MCQ quizzes from any topic or your notes |
-| 💬 Doubt Finisher | AI chat assistant in clear, professional English |
-| 🗺️ Roadmap Tracker | AI generates personalized learning paths per subject |
-| ✅ To-Do & Journal | Daily planner + personal study journal |
-| 👤 Profile | XP, achievements, quiz history, level tracking |
-| 🎯 Interview System | 8-question assessment for personalized learning profiles |
-| 📊 Data Analysis | AI analyzes your learning data to create custom profiles |
+## Table of Contents
 
----
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [API Documentation](#api-documentation)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-## 🛠️ Tech Stack
+## About the Project
 
-- **Frontend**: React + Vite + Tailwind CSS
-- **Backend**: FastAPI + Python
-- **AI**: Groq API (Llama models) + GitHub Models
-- **Database + Auth**: Supabase
-- **Deploy**: Railway (full-stack deployment)
+Pluton is a personal AI tutor designed for learners who want to learn anything new, at their own level. It combines content summarization, interactive quizzes, and personalized learning paths into a single workspace.
 
----
+### Problem it solves
 
-## 🚀 Vercel + Render Deployment
+Most learning tools are either too generic or too fragmented. Pluton brings all the core learning workflows into one place and adapts them to the user.
 
-### Frontend: Vercel | Backend: Render
+### Key goals
 
-### Step 1: Deploy Backend to Render
+- Personalize learning based on the user profile and behavior
+- Reduce time spent extracting notes and building study plans
+- Keep learners consistent with clear roadmaps and daily tasks
 
-1. Go to [render.com](https://render.com) and create an account
-2. Click **"New"** → **"Web Service"**
-3. Connect your GitHub account and select `AdixMeena/Pluton-Full`
-4. Configure build settings:
-   - **Root Directory**: `backend`
-   - **Runtime**: `Python 3`
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+## Features
 
-5. Add environment variables:
+- YouTube summarizer for quick, level-aware notes
+- PDF extractor for instant Q&A and key concept extraction
+- Quiz generator for practice and retention
+- Doubt Finisher chat for explanations and guidance
+- Subject-based roadmaps and progress tracking
+- To-do and journal for daily learning habits
+- Personalized learning profile and interview onboarding
+
+## Tech Stack
+
+### Languages
+
+- JavaScript (frontend)
+- Python (backend)
+
+### Frameworks
+
+- React + Vite (frontend)
+- FastAPI (backend)
+
+### Libraries and Services
+
+- Tailwind CSS
+- Supabase (database + auth)
+- Groq API (LLM inference)
+
+### Tools
+
+- Vercel (frontend deployment)
+- Railway (backend deployment)
+
+## Project Structure
+
 ```
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-GROQ_API_KEY=your-groq-api-key
-FRONTEND_URL=https://your-frontend-app.vercel.app
-```
-
-6. Click **"Create Web Service"**
-7. **Copy the backend URL** (e.g., `https://your-app.onrender.com`)
-
-### Step 2: Deploy Frontend to Vercel
-
-1. Go to [vercel.com](https://vercel.com) and create an account
-2. Click **"New Project"**
-3. Import your GitHub repository `AdixMeena/Pluton-Full`
-4. Configure project:
-   - **Root Directory**: `frontend`
-   - **Framework Preset**: `Vite`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-
-5. Add environment variables:
-```
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-VITE_BACKEND_URL=https://your-backend-app.onrender.com
-```
-
-6. Click **"Deploy"**
-7. Your frontend will be live at `https://your-app.vercel.app`
-
-### Step 3: Update Backend Environment Variable
-
-Go back to Render and update:
-```
-FRONTEND_URL=https://your-frontend-app.vercel.app
-```
-
-### 🎯 Final Result:
-- **Frontend**: `https://your-app.vercel.app`
-- **Backend API**: `https://your-app.onrender.com`
-
----
-
-## 🐳 Docker Deployment (Alternative)
-
-### Local Development:
-```bash
-# Copy environment file
-cp .env.example .env
-
-# Start all services
-docker-compose up --build
+.
+├── backend
+│   ├── main.py
+│   ├── requirements.txt
+│   └── railway.json
+├── frontend
+│   ├── public
+│   ├── src
+│   │   ├── components
+│   │   ├── context
+│   │   ├── pages
+│   │   └── styles
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+├── README.md
+└── .env.example
 ```
 
-### Production Docker Deployment:
-```bash
-# Build and run
-docker-compose -f docker-compose.yml up --build -d
-```
+## Installation
 
----
+### Prerequisites
 
-## ⚙️ Local Development Setup
+- Node.js 18+
+- Python 3.10+
+- Supabase project (URL + keys)
+- Groq API key
 
-### Step 1: GitHub Repository ✅
-Your code is already pushed to: `https://github.com/AdixMeena/roronoazoro.git`
+### Steps
 
-### Step 2: Railway Setup
-1. Go to [railway.app](https://railway.app) and sign up/login
-2. Click **"New Project"** → **"Deploy from GitHub repo"**
-3. Connect your GitHub account and select `roronoazoro` repository
-4. Railway will auto-detect your project structure
-
-### Step 3: Environment Variables
-In Railway dashboard, go to your project → **Variables** tab and add:
-
-#### Frontend Service Variables:
-```
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-VITE_BACKEND_URL=https://your-backend-service.up.railway.app
-```
-
-#### Backend Service Variables:
-```
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
-GROQ_API_KEY=your-groq-api-key
-FRONTEND_URL=https://your-frontend-service.up.railway.app
-```
-
-### Step 4: Database Setup
-1. Create a Supabase project at [supabase.com](https://supabase.com)
-2. Go to **SQL Editor** → paste contents of `supabase-schema.sql` → Run
-3. Copy the URL and keys from **Project Settings → API**
-
-### Step 5: Deploy
-Railway will automatically deploy both frontend and backend. Your app will be live at:
-- Frontend: `https://your-project-name.up.railway.app`
-- Backend API: `https://your-project-name-backend.up.railway.app`
-
----
-
-## ⚙️ Local Development Setup
-
-### 1. Clone and install
 ```bash
 git clone https://github.com/AdixMeena/roronoazoro.git
 cd roronoazoro
 ```
 
-### 2. Frontend Setup
+Frontend:
+
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### 3. Backend Setup
+Backend:
+
 ```bash
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-### 4. Environment Variables
-Create `.env` files in both `frontend/` and `backend/` directories:
+## Usage
 
-**frontend/.env:**
+### Run locally
+
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8000
+
+Example commands:
+
+```bash
+npm run dev
+uvicorn main:app --reload
+```
+
+Expected output: The landing page loads and you can sign in, add subjects, generate roadmaps, and use the AI tutor.
+
+Screenshots: Add screenshots here when available.
+
+## Configuration
+
+### Frontend environment variables (frontend/.env)
+
 ```env
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key-here
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 VITE_BACKEND_URL=http://localhost:8000
 ```
 
-**backend/.env:**
+### Backend environment variables (backend/.env)
+
 ```env
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_URL=your-supabase-url
+SUPABASE_ANON_KEY=your-supabase-anon-key
 GROQ_API_KEY=your-groq-api-key
 FRONTEND_URL=http://localhost:5173
 ```
-VITE_GITHUB_TOKEN=your-github-models-token
-VITE_AI_MODEL=openai/gpt-4o
+
+## API Documentation
+
+Base URL: `/`
+
+### Health
+
+`GET /health`
+
+Response:
+
+```json
+{ "status": "healthy" }
 ```
 
-### 5. Run locally
-```bash
-npm run dev
+### Personalized response
+
+`POST /personalize`
+
+Request:
+
+```json
+{
+   "user_id": "uuid",
+   "query": "Explain recursion",
+   "context": "",
+   "language": "english"
+}
 ```
 
----
+Response:
+
+```json
+{
+   "personalized_prompt": "...",
+   "response": "..."
+}
+```
+
+### Generate profile from activity
+
+`POST /generate-profile`
+
+Request:
+
+```json
+{
+   "user_id": "uuid",
+   "user_data": {
+      "chat_messages": [],
+      "quizzes": [],
+      "pdf_extractions": [],
+      "roadmaps": []
+   }
+}
+```
+
+Response:
+
+```json
+{ "learning_profile": "..." }
+```
+
+### Generate profile from interview
+
+`POST /generate-profile-from-interview`
+
+Request:
+
+```json
+{
+   "user_id": "uuid",
+   "interview_responses": {
+      "learning_style": { "value": "visual", "label": "By watching videos or seeing diagrams" }
+   }
+}
+```
+
+Response:
+
+```json
+{ "learning_profile": "..." }
+```
+
+## Testing
+
+No automated tests yet.
+
+## Deployment
+
+### Frontend (Vercel)
+
+- Root: `frontend`
+- Build: `npm run build`
+- Output: `dist`
+- Env: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_BACKEND_URL`
+
+### Backend (Railway)
+
+- Root: `backend`
+- Build: `pip install -r requirements.txt`
+- Start: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- Env: `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `GROQ_API_KEY`, `FRONTEND_URL`
+
+## Roadmap
+
+- Add advanced analytics for learning patterns
+- Add reminders and calendar integrations
+- Improve AI personalization using longer-term history
+
+## Contributing
+
+Contributions are welcome.
+
+1. Fork the repo
+2. Create a new branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m "Add feature"`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Open a Pull Request
+
+## License
+
+Unlicensed. No license has been specified.
+
+## Author
+
+- adixmeena
+
+## Acknowledgments
+
+- Supabase for auth and database
+- Groq for fast LLM inference
 
 ## 🌐 Deploy to Vercel
 
