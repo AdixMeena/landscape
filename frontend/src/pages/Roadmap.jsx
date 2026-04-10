@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { supabase, askAI } from '../lib/clients'
 import ReactMarkdown from 'react-markdown'
@@ -7,6 +8,7 @@ import { Map, Sparkles, Check, Circle, ChevronDown, ChevronRight, Plus, RefreshC
 
 export default function Roadmap() {
   const { user } = useAuth()
+  const location = useLocation()
   const [subjects, setSubjects] = useState([])
   const [selectedSubject, setSelectedSubject] = useState(null)
   const [roadmap, setRoadmap] = useState(null)
@@ -20,6 +22,15 @@ export default function Roadmap() {
     setSubjects(data || [])
     if (data?.length) setSelectedSubject(data[0])
   }
+
+  useEffect(() => {
+    if (!subjects.length) return
+    const params = new URLSearchParams(location.search)
+    const subjectId = params.get('subject')
+    if (!subjectId) return
+    const match = subjects.find(sub => String(sub.id) === String(subjectId))
+    if (match) setSelectedSubject(match)
+  }, [subjects, location.search])
 
   useEffect(() => {
     if (selectedSubject) fetchRoadmap()
