@@ -40,16 +40,8 @@ export default function Roadmap() {
     if (!selectedSubject) return
     setGenerating(true)
     try {
-      const knownTopics = Array.isArray(selectedSubject.known_topics)
-        ? selectedSubject.known_topics
-        : (selectedSubject.known_topics || '')
-            .split(',')
-            .map(t => t.trim())
-            .filter(Boolean)
-
       const prompt = `Create a detailed learning roadmap for: "${selectedSubject.name}"
 Level: ${selectedSubject.level || 'Beginner'}
-Known topics (exclude these): ${knownTopics.length ? knownTopics.join(', ') : 'None'}
 
 Return ONLY valid JSON (no markdown, no backticks):
 {
@@ -73,16 +65,6 @@ Make 3-4 phases with 4-6 topics each. Use English. Return ONLY the JSON.`
       const raw = await askAI([{ role: 'user', content: prompt }], 'You generate learning roadmaps as JSON only. No markdown, no backticks.')
       const clean = raw.replace(/```json|```/g, '').trim()
       const parsed = JSON.parse(clean)
-
-      if (knownTopics.length && parsed?.phases?.length) {
-        const normalizedKnown = new Set(knownTopics.map(t => t.toLowerCase()))
-        parsed.phases = parsed.phases
-          .map(phase => ({
-            ...phase,
-            topics: (phase.topics || []).filter(topic => !normalizedKnown.has(String(topic.title || '').toLowerCase())),
-          }))
-          .filter(phase => (phase.topics || []).length > 0)
-      }
 
       // Save to DB
       await supabase.from('roadmaps').upsert({

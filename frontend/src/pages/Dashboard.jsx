@@ -17,7 +17,7 @@ export default function Dashboard() {
   const [subjects, setSubjects] = useState([])
   const [stats, setStats] = useState({ pdf: 0, quiz: 0 })
   const [showAdd, setShowAdd] = useState(false)
-  const [newSubject, setNewSubject] = useState({ name: '', icon: '📚', color: '#7c3aed', knownTopics: '' })
+  const [newSubject, setNewSubject] = useState({ name: '', icon: '📚', color: '#7c3aed', description: '' })
   const [loading, setLoading] = useState(true)
 
   useEffect(() => { if (user) { fetchSubjects(); fetchStats() } }, [user])
@@ -39,23 +39,19 @@ export default function Dashboard() {
 
   async function addSubject() {
     if (!newSubject.name.trim()) return toast.error('Subject name required')
-    const knownTopics = newSubject.knownTopics
-      .split(',')
-      .map(t => t.trim())
-      .filter(Boolean)
     const { error } = await supabase.from('subjects').insert({
       user_id: user.id,
       name: newSubject.name,
       icon: newSubject.icon,
       color: newSubject.color,
-      known_topics: knownTopics,
+      description: newSubject.description,
       progress: 0,
       level: 'Beginner',
     })
     if (error) return toast.error('Failed to add subject')
     toast.success(`${newSubject.icon} ${newSubject.name} added!`)
     setShowAdd(false)
-    setNewSubject({ name: '', icon: '📚', color: '#7c3aed', knownTopics: '' })
+    setNewSubject({ name: '', icon: '📚', color: '#7c3aed', description: '' })
     fetchSubjects()
   }
 
@@ -228,10 +224,8 @@ export default function Dashboard() {
                     <Trash2 size={14} />
                   </button>
                 </div>
-                {Array.isArray(sub.known_topics) && sub.known_topics.length > 0 && (
-                  <p style={{ color: '#475569', fontSize: '0.78rem', marginTop: 10, lineHeight: 1.5 }}>
-                    Known: {sub.known_topics.join(', ')}
-                  </p>
+                {sub.description && (
+                  <p style={{ color: '#475569', fontSize: '0.78rem', marginTop: 10, lineHeight: 1.5 }}>{sub.description}</p>
                 )}
                 {/* Progress bar */}
                 <div style={{ marginTop: 14 }}>
@@ -277,13 +271,7 @@ export default function Dashboard() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <input className="input-field" placeholder="Subject name (e.g. Physics, DSA...)" value={newSubject.name} onChange={e => setNewSubject(s => ({ ...s, name: e.target.value }))} />
-              <textarea
-                className="input-field"
-                rows={3}
-                placeholder="Topics you already know (optional, comma separated)"
-                value={newSubject.knownTopics}
-                onChange={e => setNewSubject(s => ({ ...s, knownTopics: e.target.value }))}
-              />
+              <input className="input-field" placeholder="Short description (optional)" value={newSubject.description} onChange={e => setNewSubject(s => ({ ...s, description: e.target.value }))} />
 
               <div>
                 <label style={{ color: '#64748b', fontSize: '0.8rem', fontFamily: 'Syne', fontWeight: 600, display: 'block', marginBottom: 8 }}>Pick an Icon</label>
