@@ -40,8 +40,11 @@ export default function Roadmap() {
     if (!selectedSubject) return
     setGenerating(true)
     try {
+      const priorKnowledge = selectedSubject.description?.trim()
       const prompt = `Create a detailed learning roadmap for: "${selectedSubject.name}"
-Level: ${selectedSubject.level || 'Beginner'}
+    Level: ${selectedSubject.level || 'Beginner'}
+    ${priorKnowledge ? `User already knows: ${priorKnowledge}
+    Avoid or reduce these topics and focus on what they have not learned yet.` : ''}
 
 Return ONLY valid JSON (no markdown, no backticks):
 {

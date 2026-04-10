@@ -271,7 +271,7 @@ export default function Dashboard() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <input className="input-field" placeholder="Subject name (e.g. Physics, DSA...)" value={newSubject.name} onChange={e => setNewSubject(s => ({ ...s, name: e.target.value }))} />
-              <input className="input-field" placeholder="Short description (optional)" value={newSubject.description} onChange={e => setNewSubject(s => ({ ...s, description: e.target.value }))} />
+              <input className="input-field" placeholder="What do you already know? (topics, basics, tools...)" value={newSubject.description} onChange={e => setNewSubject(s => ({ ...s, description: e.target.value }))} />
 
               <div>
                 <label style={{ color: '#64748b', fontSize: '0.8rem', fontFamily: 'Syne', fontWeight: 600, display: 'block', marginBottom: 8 }}>Pick an Icon</label>
