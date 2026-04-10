@@ -61,8 +61,8 @@ export default function Landing() {
               fontFamily: 'Syne', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.03em',
               fontSize: 'clamp(2.6rem, 6vw, 5.2rem)', color: '#f1f5f9', marginBottom: 18,
             }}>
-              Turn curiosity into
-              <span className="shimmer-text"> mastery</span>
+              Your personal AI.
+              <span className="shimmer-text"> Your perfect pace</span>
             </h1>
 
             <p className="animate-fade-in-up stagger-3" style={{
