@@ -121,7 +121,7 @@ Keep responses concise and focused on the topic.`
       </div>
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 16, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 16, display: 'flex', flexDirection: 'column', gap: 18 }}>
         {messages.map((msg) => (
           <div key={msg.id} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', flexDirection: msg.role === 'user' ? 'row-reverse' : 'row' }}>
             <div style={{
@@ -137,17 +137,18 @@ Keep responses concise and focused on the topic.`
                 : <Bot size={16} color="white" />}
             </div>
             <div style={{
-              maxWidth: '75%',
-              padding: '14px 18px',
-              borderRadius: msg.role === 'user' ? '18px 6px 18px 18px' : '6px 18px 18px 18px',
+              maxWidth: msg.role === 'user' ? '75%' : '78%',
+              padding: msg.role === 'user' ? '12px 16px' : '16px 18px',
+              borderRadius: msg.role === 'user' ? '16px 8px 16px 16px' : '12px 18px 18px 8px',
               background: msg.role === 'user'
-                ? 'linear-gradient(135deg, rgba(124,58,237,0.25), rgba(124,58,237,0.15))'
-                : 'rgba(255,255,255,0.05)',
+                ? 'linear-gradient(135deg, rgba(124,58,237,0.22), rgba(124,58,237,0.12))'
+                : 'rgba(15,23,42,0.75)',
               border: msg.role === 'user'
-                ? '1px solid rgba(124,58,237,0.3)'
-                : '1px solid rgba(255,255,255,0.08)',
-              fontSize: '0.875rem',
-              lineHeight: 1.6,
+                ? '1px solid rgba(124,58,237,0.35)'
+                : '1px solid rgba(148,163,184,0.18)',
+              boxShadow: msg.role === 'assistant' ? '0 8px 30px rgba(2,6,23,0.35)' : 'none',
+              fontSize: '0.9rem',
+              lineHeight: 1.7,
               color: '#e2e8f0',
             }}>
               {msg.role === 'assistant' ? (

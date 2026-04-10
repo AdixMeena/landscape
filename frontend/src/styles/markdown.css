@@ -1,55 +1,59 @@
 /* Markdown styling for AI responses */
 .markdown-body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.7;
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.75;
   color: #e2e8f0;
-  max-width: 720px;
+  max-width: 680px;
   padding: 0;
+  letter-spacing: 0.005em;
 }
 
 .markdown-body h1, .markdown-body h2, .markdown-body h3 {
-  font-weight: 600;
-  margin-top: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #f1f5f9;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  margin-top: 1.4rem;
+  margin-bottom: 0.6rem;
+  color: #f8fafc;
+  line-height: 1.25;
 }
 
 .markdown-body h1 {
-  font-size: 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  padding-bottom: 0.3rem;
+  font-size: 1.45rem;
+  border-bottom: 1px solid rgba(148,163,184,0.2);
+  padding-bottom: 0.35rem;
 }
 
 .markdown-body h2 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
 }
 
 .markdown-body h3 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .markdown-body p {
-  margin-bottom: 1rem;
+  margin: 0.7rem 0;
   color: #e2e8f0;
 }
 
 .markdown-body code {
-  background: rgba(255,255,255,0.1);
+  background: rgba(148,163,184,0.18);
   padding: 2px 6px;
-  border-radius: 4px;
-  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
   font-size: 0.85rem;
   color: #fbbf24;
 }
 
 .markdown-body pre {
-  background: #1e1e1e;
-  color: #f8f8f2;
+  background: #0b1220;
+  color: #e2e8f0;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow-x: auto;
   margin: 1rem 0;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(148,163,184,0.18);
+  box-shadow: inset 0 0 0 1px rgba(15,23,42,0.35);
 }
 
 .markdown-body pre code {
@@ -62,21 +66,21 @@
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
+  background: rgba(15,23,42,0.6);
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .markdown-body th, .markdown-body td {
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 8px 12px;
+  border: 1px solid rgba(148,163,184,0.15);
+  padding: 10px 12px;
   text-align: left;
 }
 
 .markdown-body th {
-  background: rgba(255,255,255,0.1);
-  font-weight: 600;
-  color: #f1f5f9;
+  background: rgba(30,41,59,0.6);
+  font-weight: 700;
+  color: #f8fafc;
 }
 
 .markdown-body td {
@@ -84,21 +88,22 @@
 }
 
 .markdown-body ul, .markdown-body ol {
-  margin: 1rem 0;
-  padding-left: 2rem;
+  margin: 0.8rem 0;
+  padding-left: 1.4rem;
 }
 
 .markdown-body li {
-  margin-bottom: 0.5rem;
+  margin: 0.35rem 0;
   color: #e2e8f0;
 }
 
 .markdown-body blockquote {
-  border-left: 4px solid #7c3aed;
-  padding-left: 1rem;
+  border-left: 3px solid #7c3aed;
+  padding: 0.2rem 0 0.2rem 1rem;
   margin: 1rem 0;
   color: #cbd5e1;
-  font-style: italic;
+  background: rgba(124,58,237,0.08);
+  border-radius: 8px;
 }
 
 .markdown-body strong {

@@ -167,6 +167,7 @@ Output Format:
 - Provide a structured breakdown (steps, bullets, or sections).
 - Include examples or practical applications when useful.
 - End with a short summary or key takeaway..
+- Give the answer as sort and as you can to explain this topic
 """},
                 {"role": "user", "content": base_prompt}
             ],
