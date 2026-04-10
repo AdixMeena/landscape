@@ -325,17 +325,16 @@ async def generate_profile_from_interview(request: dict):
         if not user_id:
             raise HTTPException(status_code=400, detail="User ID is required")
         
-        # Fetch existing profile if available
-        supabase_client = get_supabase()
+        # Fetch existing profile if available (optional, do not fail if Supabase is unavailable)
+        existing_profile = ""
         try:
+            supabase_client = get_supabase()
             existing_profile_response = supabase_client.table('profiles').select('learning_profile').eq('id', user_id).execute()
-            existing_profile = ""
             if existing_profile_response.data and len(existing_profile_response.data) > 0 and existing_profile_response.data[0].get('learning_profile'):
                 existing_profile = existing_profile_response.data[0]['learning_profile']
             print(f"Existing profile length: {len(existing_profile)}")
         except Exception as e:
-            print(f"Error fetching existing profile: {e}")
-            existing_profile = ""
+            print(f"Error fetching existing profile (continuing without it): {e}")
         
         # Format interview responses for analysis
         interview_data = []
