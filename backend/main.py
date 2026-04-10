@@ -42,7 +42,7 @@ def get_supabase():
     global supabase
     if supabase is None:
         supabase_url = os.getenv("SUPABASE_URL")
-        supabase_key = os.getenv("SUPABASE_SERVICE_KEY") or os.getenv("SUPABASE_ANON_KEY")
+        supabase_key = os.getenv("SUPABASE_ANON_KEY")
         if not supabase_url or not supabase_key:
             raise HTTPException(status_code=500, detail="Supabase configuration missing")
         supabase = create_client(supabase_url, supabase_key)
@@ -195,13 +195,10 @@ async def health_check():
 @app.get("/chat-history/{user_id}")
 async def get_chat_history(user_id: str):
     try:
-        print(f"Fetching chat history for user: {user_id}")
         supabase = get_supabase()
         response = supabase.table('chat_messages').select('*').eq('user_id', user_id).order('created_at', desc=False).execute()
-        print(f"Found {len(response.data)} messages")
         return {"messages": response.data}
     except Exception as e:
-        print(f"Error fetching chat history: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Generate personalized learning profile
