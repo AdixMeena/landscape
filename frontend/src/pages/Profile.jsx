@@ -22,6 +22,7 @@ export default function Profile() {
   const [weeklyData, setWeeklyData] = useState([])
   const [generatingProfile, setGeneratingProfile] = useState(false)
   const [learningProfile, setLearningProfile] = useState(null)
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
   useEffect(() => {
     if (profile) {
@@ -55,6 +56,10 @@ export default function Profile() {
   }
 
   async function generatePersonalizedProfile() {
+    if (!user?.id) {
+      toast.error('Please sign in again to generate your profile')
+      return
+    }
     setGeneratingProfile(true)
     try {
       // Get date 7 days ago
@@ -77,7 +82,7 @@ export default function Profile() {
       }
 
       // Send to backend for analysis
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/generate-profile`, {
+      const response = await fetch(`${backendUrl}/generate-profile`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +94,15 @@ export default function Profile() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to generate profile')
+        let message = 'Failed to generate profile'
+        try {
+          const err = await response.json()
+          message = err?.detail || err?.error || message
+        } catch {
+          const text = await response.text()
+          if (text) message = text
+        }
+        throw new Error(message)
       }
 
       const result = await response.json()
@@ -106,7 +119,7 @@ export default function Profile() {
 
     } catch (error) {
       console.error('Error generating profile:', error)
-      toast.error('Failed to generate personalized profile')
+      toast.error(error?.message || 'Failed to generate personalized profile')
     } finally {
       setGeneratingProfile(false)
     }
