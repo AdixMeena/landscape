@@ -9,6 +9,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import '../styles/markdown.css'
 
+
+
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced']
 const levelColors = { Beginner: '#34d399', Intermediate: '#fbbf24', Advanced: '#f87171' }
 

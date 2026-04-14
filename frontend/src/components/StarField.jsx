@@ -10,6 +10,8 @@ export default function StarField({ count = 80 }) {
     delay: Math.random() * 5,
   })), [count])
 
+  
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
       {stars.map(s => (

@@ -19,6 +19,7 @@ export default function QuizLab() {
   const [answers, setAnswers] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [score, setScore] = useState(0)
+  
 
   useEffect(() => {
     const ctx = localStorage.getItem('pluton_quiz_context')

@@ -4,6 +4,8 @@ import Sidebar from './Sidebar'
 import StarField from './StarField'
 import { Menu, X, LayoutDashboard, FileText, Brain, MessageCircle, CheckSquare, User } from 'lucide-react'
 
+
+
 const mobileNav = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Home' },
   { to: '/pdf', icon: FileText, label: 'PDF' },

@@ -13,6 +13,7 @@ const MODES = [
   { id: 'both', label: '🎯 Notes + Q&A', desc: 'Both notes and questions' },
 ]
 
+
 async function extractTextFromPDF(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

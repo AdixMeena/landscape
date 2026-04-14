@@ -8,6 +8,8 @@ import toast from 'react-hot-toast'
 import { MessageCircle, Send, Trash2, Sparkles, Bot, User } from 'lucide-react'
 import '../styles/markdown.css'
 
+
+
 const SUGGESTIONS = [
 "What is recursion? Explain with a simple example",
 "Difference between '==' and '===' in JavaScript?",

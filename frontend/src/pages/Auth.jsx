@@ -14,6 +14,8 @@ export default function Auth() {
   const { signIn, signUp, user } = useAuth()
   const navigate = useNavigate()
 
+  
+
   useEffect(() => { if (user) navigate('/dashboard') }, [user])
 
   const update = (k, v) => setForm(f => ({ ...f, [k]: v }))

@@ -20,6 +20,7 @@ export default function Dashboard() {
   const [newSubject, setNewSubject] = useState({ name: '', icon: '📚', color: '#7c3aed', description: '' })
   const [loading, setLoading] = useState(true)
 
+  
   useEffect(() => { if (user) { fetchSubjects(); fetchStats() } }, [user])
 
   async function fetchSubjects() {

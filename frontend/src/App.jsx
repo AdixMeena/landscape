@@ -16,6 +16,8 @@ import Profile from './pages/Profile'
 import Interview from './pages/Interview'
 import ChatHistory from './pages/ChatHistory'
 
+
+
 export default function App() {
   return (
     <AuthProvider>

@@ -103,7 +103,7 @@ export default function Interview() {
       toast.info('You already have a personalized profile! Redirecting to profile page...')
       setTimeout(() => window.location.href = '/profile', 2000)
     }
-  }, [profile])
+  }, [profile]) 
 
   const handleAnswer = (questionId, answer) => {
     setAnswers(prev => ({ ...prev, [questionId]: answer }))

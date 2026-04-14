@@ -212,7 +212,7 @@ async def generate_learning_profile(request: dict):
         # Format user data for analysis
         data_summary = format_user_data_for_analysis(user_data)
         
-        # Create the analysis prompt
+        # Create the analysis prompt  THIS IS CONNECTED WITH INTERWIEVE 
         analysis_prompt = f"""You are an AI learning analyst.
 
 Below is a dataset containing a user's chat messages, questions, quiz answers, and interaction history.

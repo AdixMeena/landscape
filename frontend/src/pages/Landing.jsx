@@ -18,6 +18,7 @@ export default function Landing() {
     <div style={{ minHeight: '100vh', background: '#03040a', position: 'relative', overflow: 'hidden' }}>
       <StarField count={120} />
 
+
       {/* Nav */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,

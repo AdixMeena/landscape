@@ -6,6 +6,8 @@ import {
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
+
+
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/pdf', icon: FileText, label: 'PDF Notes' },

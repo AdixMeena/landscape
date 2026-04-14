@@ -23,8 +23,8 @@ export default function TodoJournal() {
   const [journalText, setJournalText] = useState('')
   const [journalMood, setJournalMood] = useState('😊')
   const [journalTitle, setJournalTitle] = useState('')
-  const [savingJournal, setSavingJournal] = useState(false)
-  const [editingJournal, setEditingJournal] = useState(null)
+  const [savingJournal, setSavingJournal] = useState(false) 
+  const [editingJournal, setEditingJournal] = useState(null)   
 
   useEffect(() => { fetchTodos(); fetchJournals() }, [user])
 
